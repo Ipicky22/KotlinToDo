@@ -37,4 +37,16 @@ class TaskListAdapter(private val taskList: List<String>) : RecyclerView.Adapter
             // C'est ici qu'on reliera les données et les listeners une fois l'adapteur implémenté
         }
     }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun getItemCount(): Int {
+        return taskList.size
+    }
+
+    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
