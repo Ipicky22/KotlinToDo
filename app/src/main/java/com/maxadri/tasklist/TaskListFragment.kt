@@ -4,15 +4,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.*
 import com.maxadri.todo.R
 
 class TaskListFragment : Fragment() {
 
-    private val taskList = listOf("Task 1", "Task 2", "Task 3")
+    private val taskList = listOf(
+        Task(id = "id_1", title = "Task 1", description = "description 1"),
+        Task(id = "id_2", title = "Task 2"),
+        Task(id = "id_3", title = "Task 3")
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,8 +27,7 @@ class TaskListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        LayoutManager
-        Adapter
+
     }
 }
 
@@ -39,7 +40,8 @@ class TaskListAdapter(private val taskList: List<String>) : RecyclerView.Adapter
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_task, parent, false)
+        return TaskViewHolder(itemView)
     }
 
     override fun getItemCount(): Int {
@@ -47,6 +49,6 @@ class TaskListAdapter(private val taskList: List<String>) : RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        holder.bind(taskList[position])
     }
 }
