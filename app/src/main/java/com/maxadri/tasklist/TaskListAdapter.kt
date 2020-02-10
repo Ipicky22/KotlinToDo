@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.maxadri.todo.R
+import kotlinx.android.synthetic.main.item_task.view.*
 
 class TaskListAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
@@ -14,6 +15,7 @@ class TaskListAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<T
             itemView.findViewById<TextView>(R.id.task_title).text = task.title
             itemView.findViewById<TextView>(R.id.task_description).text = task.description
             //itemView.task_title.text = task.title
+            //itemView.task_description = task.description
         }
     }
 
