@@ -1,5 +1,4 @@
 package com.maxadri.todo
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
