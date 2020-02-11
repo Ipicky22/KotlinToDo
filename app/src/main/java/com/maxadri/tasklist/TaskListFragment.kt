@@ -48,7 +48,6 @@ class TaskListFragment : Fragment() {
             val intent = Intent(activity, TaskActivity::class.java)
             intent.putExtra("EditTask", it)
             startActivityForResult(intent, EDIT_TASK_REQUEST_CODE)
-
         }
 
         adapter.onDeleteClickListener = { task ->
@@ -56,7 +55,6 @@ class TaskListFragment : Fragment() {
             recyclerview.adapter?.notifyDataSetChanged()
         }
     }
-
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
