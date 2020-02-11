@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.maxadri.task.TaskActivity
 import com.maxadri.todo.R
 import kotlinx.android.synthetic.main.fragment_task_list.*
+import kotlinx.android.synthetic.main.item_task.*
 import java.util.*
 
 class TaskListFragment : Fragment() {
@@ -20,6 +21,7 @@ class TaskListFragment : Fragment() {
         Task(id = "id_2", title = "Task 2"),
         Task(id = "id_3", title = "Task 3")
     )
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,6 +43,14 @@ class TaskListFragment : Fragment() {
             startActivityForResult(intent, ADD_TASK_REQUEST_CODE)
         }
 
+        // Action sur un element en particulier de la liste
+        adapter.onEditClickListener = {
+            val intent = Intent(activity, TaskActivity::class.java)
+            intent.putExtra("EditTask", it)
+            startActivityForResult(intent, EDIT_TASK_REQUEST_CODE)
+
+        }
+
         adapter.onDeleteClickListener = { task ->
             taskList.remove(task)
             recyclerview.adapter?.notifyDataSetChanged()
@@ -49,16 +59,29 @@ class TaskListFragment : Fragment() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        val task = data!!.getSerializableExtra(TaskActivity.EXTRA_REPLY.toString()) as Task
+
+        val task = data!!.getSerializableExtra(TaskActivity.TASK_KEY) as Task
         super.onActivityResult(requestCode, resultCode, data)
+
         if (requestCode == ADD_TASK_REQUEST_CODE) {
             if(resultCode == Activity.RESULT_OK) {
                 taskList.add(task)
+                recyclerview.adapter?.notifyDataSetChanged()
+            }
+        }
+
+        if (requestCode == EDIT_TASK_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                val index = taskList.indexOfFirst { it.id == task.id }
+                taskList[index] = task
+                //taskList.set(index, task)
+                recyclerview.adapter?.notifyDataSetChanged()
             }
         }
     }
 
     companion object {
-        const val ADD_TASK_REQUEST_CODE = 1
+        const val ADD_TASK_REQUEST_CODE = 201
+        const val EDIT_TASK_REQUEST_CODE = 200
     }
 }
