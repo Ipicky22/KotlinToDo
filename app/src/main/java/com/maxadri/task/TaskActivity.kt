@@ -27,7 +27,6 @@ class TaskActivity : AppCompatActivity() {
                 title = newTitle.text.toString(),
                 description = newDescription.text.toString()
             )
-            newTask.setText()
             intent.putExtra(TASK_KEY, newTask)
             setResult(RESULT_OK, intent)
             finish()
