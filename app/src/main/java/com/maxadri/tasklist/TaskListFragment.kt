@@ -12,6 +12,7 @@ import com.maxadri.task.TaskActivity
 import com.maxadri.todo.R
 import kotlinx.android.synthetic.main.fragment_task_list.*
 import kotlinx.android.synthetic.main.item_task.*
+import java.io.Serializable
 import java.util.*
 
 class TaskListFragment : Fragment() {
@@ -46,7 +47,7 @@ class TaskListFragment : Fragment() {
         // Action sur un element en particulier de la liste
         adapter.onEditClickListener = {
             val intent = Intent(activity, TaskActivity::class.java)
-            intent.putExtra("EditTask", it)
+            intent.putExtra("EditTask", it as Serializable)
             startActivityForResult(intent, EDIT_TASK_REQUEST_CODE)
         }
 

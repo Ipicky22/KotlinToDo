@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.maxadri.tasklist.Task
 import com.maxadri.todo.R
 import kotlinx.android.synthetic.main.create_or_edit_task.*
+import java.io.Serializable
 import java.util.*
 
 class TaskActivity : AppCompatActivity() {
@@ -28,7 +29,7 @@ class TaskActivity : AppCompatActivity() {
                 title = titleTask.text.toString(),
                 description = descriptionTask.text.toString()
             )
-            intent.putExtra(TASK_KEY, newTask)
+            intent.putExtra(TASK_KEY, newTask as Serializable)
             setResult(RESULT_OK, intent)
             finish()
 
