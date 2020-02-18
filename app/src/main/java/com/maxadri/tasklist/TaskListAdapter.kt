@@ -7,9 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.maxadri.todo.R
 import kotlinx.android.synthetic.main.item_task.view.*
+import kotlin.properties.Delegates
 
-class TaskListAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
+class TaskListAdapter() : RecyclerView.Adapter<TaskListAdapter.TaskViewHolder>() {
 
+    var list: List<Task> by Delegates.observable(emptyList()) { _, _, _ ->
+        notifyDataSetChanged()
+    }
 
     var onDeleteClickListener: (Task) -> Unit = { }
 
@@ -37,11 +41,11 @@ class TaskListAdapter(private val taskList: List<Task>) : RecyclerView.Adapter<T
     }
 
     override fun getItemCount(): Int {
-        return taskList.size
+        return list.size
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.bind(taskList[position])
+        holder.bind(list[position])
     }
 
 }
