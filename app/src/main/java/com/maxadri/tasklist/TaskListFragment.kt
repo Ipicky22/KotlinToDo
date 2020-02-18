@@ -6,13 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.maxadri.network.Api
+import com.maxadri.network.UserInfo
 import com.maxadri.task.TaskActivity
 import com.maxadri.todo.R
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_task_list.*
+import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 import java.io.Serializable
 
 
@@ -44,7 +51,6 @@ class TaskListFragment : Fragment() {
            startActivityForResult(intent, ADD_TASK_REQUEST_CODE)
         }
 
-        // Action sur un element en particulier de la liste
         adapter.onEditClickListener = {
             val intent = Intent(activity, TaskActivity::class.java)
             intent.putExtra("EditTask", it as Serializable)
@@ -54,8 +60,6 @@ class TaskListFragment : Fragment() {
         adapter.onDeleteClickListener = { task ->
             viewModel.deleteTask(task)
         }
-
-        //val info = view.findViewById<TextView>(R.id.info)
 
         viewModel.taskList.observe(this, Observer { newList ->
             adapter.list = newList.orEmpty()
@@ -84,6 +88,14 @@ class TaskListFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         viewModel.loadTask()
+
+        lifecycleScope.launch {
+           val userInfo: UserInfo = Api.userService.getInfo().body()!!
+           user_info_text.text = "${userInfo.firstName} ${userInfo.lastName}"
+        }
+
+
+
     }
 
     companion object {
