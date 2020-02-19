@@ -11,6 +11,33 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <EditText
+            android:id="@+id/lastNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Edit LastName"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/firstNameEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Edit FirstName"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/mailEdit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Edit Email"
+            android:inputType="textPersonName"
+            android:text="Name" />
+
         <ImageView
             android:id="@+id/image_view"
             android:layout_width="match_parent"
@@ -27,6 +54,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Prendre une photo" />
+
+        <Button
+            android:id="@+id/editUserInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Edit user" />
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

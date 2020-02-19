@@ -31,7 +31,6 @@ class TaskListFragment : Fragment() {
         ViewModelProvider(this).get(TaskListViewModel::class.java)
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -73,18 +72,18 @@ class TaskListFragment : Fragment() {
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        val task = data!!.getSerializableExtra(TaskActivity.TASK_KEY) as Task
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == ADD_TASK_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
+                val task = data!!.getSerializableExtra(TaskActivity.TASK_KEY) as Task
                 viewModel.createTask(task)
             }
         }
 
         if (requestCode == EDIT_TASK_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
+                val task = data!!.getSerializableExtra(TaskActivity.TASK_KEY) as Task
                 viewModel.editTask(task)
             }
         }

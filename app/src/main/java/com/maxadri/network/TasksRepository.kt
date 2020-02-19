@@ -1,7 +1,5 @@
 package com.maxadri.network
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.maxadri.tasklist.Task
 
 class TasksRepository {
