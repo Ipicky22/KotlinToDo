@@ -94,11 +94,10 @@ class TaskListFragment : Fragment() {
         viewModel.loadTask()
 
         lifecycleScope.launch {
-           val userInfo: UserInfo = Api.userService.getInfo().body()!!
-           user_info_text.text = "${userInfo.firstName} ${userInfo.lastName}"
+            val userInfo: UserInfo = Api.userService.getInfo().body()!!
+            user_info_text.text = "${userInfo.firstName} ${userInfo.lastName}"
+            Glide.with(this@TaskListFragment).load(userInfo.avatar).apply(RequestOptions.circleCropTransform().override(200,200)).into(avatar)
         }
-
-        Glide.with(this).load("https://goo.gl/gEgYUd").apply(RequestOptions.circleCropTransform()).into(avatar)
     }
 
     companion object {
