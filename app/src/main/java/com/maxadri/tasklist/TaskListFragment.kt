@@ -6,20 +6,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.maxadri.network.Api
 import com.maxadri.network.UserInfo
 import com.maxadri.task.TaskActivity
 import com.maxadri.todo.R
-import kotlinx.android.synthetic.main.activity_main.*
+import com.maxadri.userInfo.UserInfoActivity
 import kotlinx.android.synthetic.main.fragment_task_list.*
 import kotlinx.coroutines.launch
-import org.w3c.dom.Text
 import java.io.Serializable
 
 
@@ -49,6 +49,11 @@ class TaskListFragment : Fragment() {
         addTask.setOnClickListener {
             val intent = Intent(activity, TaskActivity::class.java)
            startActivityForResult(intent, ADD_TASK_REQUEST_CODE)
+        }
+
+        avatar.setOnClickListener {
+            val intent = Intent(activity, UserInfoActivity::class.java)
+            startActivityForResult(intent, EDIT_USER_REQUEST_CODE)
         }
 
         adapter.onEditClickListener = {
@@ -94,12 +99,12 @@ class TaskListFragment : Fragment() {
            user_info_text.text = "${userInfo.firstName} ${userInfo.lastName}"
         }
 
-
-
+        Glide.with(this).load("https://goo.gl/gEgYUd").apply(RequestOptions.circleCropTransform()).into(avatar)
     }
 
     companion object {
         const val ADD_TASK_REQUEST_CODE = 201
         const val EDIT_TASK_REQUEST_CODE = 200
+        const val EDIT_USER_REQUEST_CODE = 300
     }
 }
