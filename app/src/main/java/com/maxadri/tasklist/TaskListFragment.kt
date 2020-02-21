@@ -50,6 +50,11 @@ class TaskListFragment : Fragment() {
            startActivityForResult(intent, ADD_TASK_REQUEST_CODE)
         }
 
+        user_info_text.setOnClickListener {
+            val intent = Intent(activity, UserInfoActivity::class.java)
+            startActivityForResult(intent, EDIT_USER_REQUEST_CODE)
+        }
+
         avatar.setOnClickListener {
             val intent = Intent(activity, UserInfoActivity::class.java)
             startActivityForResult(intent, EDIT_USER_REQUEST_CODE)
