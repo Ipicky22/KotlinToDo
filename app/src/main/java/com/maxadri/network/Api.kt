@@ -30,6 +30,7 @@ object Api {
 
     val userService: IUserService by lazy { retrofit.create(IUserService::class.java) }
     val tasksWebService: ITasksWebService by lazy { retrofit.create(ITasksWebService::class.java) }
+
 }
 
 

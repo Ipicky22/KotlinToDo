@@ -1,5 +1,7 @@
 package com.maxadri.network
 
+import com.maxadri.login.LoginForm
+import com.maxadri.login.LoginResponse
 import okhttp3.MultipartBody
 import retrofit2.Response
 import retrofit2.http.*
@@ -14,4 +16,7 @@ interface IUserService {
 
     @PATCH("users")
     suspend fun update (@Body user: UserInfo): Response<UserInfo>
+
+    @POST("users/login")
+    suspend fun login(@Body user: LoginForm): Response<LoginResponse>
 }

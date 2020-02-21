@@ -15,14 +15,15 @@
         android:theme="@style/AppTheme"
         android:authorities="${FILE_PROVIDER_AUTHORITY}">
         <activity android:name="com.maxadri.userInfo.UserInfoActivity"></activity>
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name="com.maxadri.task.TaskActivity"></activity>
+        <activity android:name="com.maxadri.authentication.AuthenticationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.maxadri.task.TaskActivity"></activity>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.android.fileprovider"
