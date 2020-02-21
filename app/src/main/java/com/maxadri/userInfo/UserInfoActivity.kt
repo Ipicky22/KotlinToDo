@@ -104,7 +104,7 @@ class UserInfoActivity : AppCompatActivity() {
                 requestStoragePermission()
             }
         } else {
-            openStorage()
+            dispatchTakePictureIntent()
         }
     }
 
