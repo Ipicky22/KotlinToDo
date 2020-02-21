@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -32,6 +33,8 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.text.SimpleDateFormat
+import java.util.*
 
 class UserInfoActivity : AppCompatActivity() {
 
@@ -185,6 +188,23 @@ class UserInfoActivity : AppCompatActivity() {
 
         val body = RequestBody.create(MediaType.parse("image/png"), f)
         return MultipartBody.Part.createFormData("avatar", f.path, body)
+    }
+
+    lateinit var currentPhotoPath: String
+
+    @Throws(IOException::class)
+    private fun createImageFile(): File {
+        // Create an image file name
+        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
+        val storageDir: File = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
+        return File.createTempFile(
+            "JPEG_${timeStamp}_", /* prefix */
+            ".jpg", /* suffix */
+            storageDir /* directory */
+        ).apply {
+            // Save a file: path for use with ACTION_VIEW intents
+            currentPhotoPath = absolutePath
+        }
     }
 
     companion object {
